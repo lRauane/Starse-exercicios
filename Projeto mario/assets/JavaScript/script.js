@@ -10,20 +10,26 @@ const jump = () => {
 }
 
 const loopGame = setInterval(() => {
-    if (pipePosition <=  120 && pipePosition > 0 && marioPosition < 80)
+    const pipePosition = pipe.offsetLeft;
+    const marioPosition = +window
+      .getComputedStyle(mario)
+      .bottom.replace("px", "");
 
-    pipe.style.animation = "none";
-    pipe.style.left = `${pipePosition}px`
+      if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+        pipe.style.animation = "none";
+        pipe.style.left = `${pipePosition}px`;
+    
 
     mario.style.animation = "none";
     mario.style.bottom = `${marioPosition}px`
 
     mario.src = "./assets/imagens/mario-game-over.png"
     mario.styles.width = "75px";
-    mario.styles.marginLeft = "45px";
+    mario.styles.marginLeft = "50px";
+    clearInterval(loopGame)
+      }
 }, 10)
 
-clearInterval(loopGame)
+
 
 document.addEventListener("keydown", jump)
-
